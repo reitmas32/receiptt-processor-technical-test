@@ -1,0 +1,76 @@
+basePath: /
+definitions:
+  models.ResponseGetPoints:
+    properties:
+      points:
+        example: 56
+        type: integer
+    type: object
+  models.ResponseProcessReceipts:
+    properties:
+      id:
+        example: fsdfbshfsfbsdfnsd
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: rafa.zamora.rals@gmail.com
+    name: Oswaldo Rafael Zamora Ramirez
+    url: https://github.com/reitmas32
+  description: This is a API by System UNICyber|SISEC https://github.com/reitmas32/UNICyber-BackEnd
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  title: UNICyber-API
+  version: "1.0"
+paths:
+  /receipts/:id/points:
+    get:
+      operationId: get-points
+      parameters:
+      - description: Schema by Calculate Ponits
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResponseGetPoints'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ResponseGetPoints'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ResponseGetPoints'
+      summary: Calculate Points
+      tags:
+      - Receipts
+  /receipts/process:
+    post:
+      operationId: receipts-process
+      parameters:
+      - description: Schema by Create New Receipt
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResponseProcessReceipts'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ResponseProcessReceipts'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ResponseProcessReceipts'
+      summary: Create new Receipt
+      tags:
+      - Receipts
+swagger: "2.0"

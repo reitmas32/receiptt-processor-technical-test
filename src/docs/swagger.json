@@ -1,0 +1,115 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a API by System UNICyber|SISEC https://github.com/reitmas32/UNICyber-BackEnd",
+        "title": "UNICyber-API",
+        "contact": {
+            "name": "Oswaldo Rafael Zamora Ramirez",
+            "url": "https://github.com/reitmas32",
+            "email": "rafa.zamora.rals@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/receipts/:id/points": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Receipts"
+                ],
+                "summary": "Calculate Points",
+                "operationId": "get-points",
+                "parameters": [
+                    {
+                        "description": "Schema by Calculate Ponits",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseGetPoints"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseGetPoints"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseGetPoints"
+                        }
+                    }
+                }
+            }
+        },
+        "/receipts/process": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Receipts"
+                ],
+                "summary": "Create new Receipt",
+                "operationId": "receipts-process",
+                "parameters": [
+                    {
+                        "description": "Schema by Create New Receipt",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseProcessReceipts"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseProcessReceipts"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseProcessReceipts"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.ResponseGetPoints": {
+            "type": "object",
+            "properties": {
+                "points": {
+                    "type": "integer",
+                    "example": 56
+                }
+            }
+        },
+        "models.ResponseProcessReceipts": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "fsdfbshfsfbsdfnsd"
+                }
+            }
+        }
+    }
+}
