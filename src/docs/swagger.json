@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a API by System UNICyber|SISEC https://github.com/reitmas32/UNICyber-BackEnd",
-        "title": "UNICyber-API",
+        "description": "This is a API by Technical Test by Fetch",
+        "title": "Receipt Processor",
         "contact": {
             "name": "Oswaldo Rafael Zamora Ramirez",
             "url": "https://github.com/reitmas32",
@@ -14,7 +14,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:3000",
+    "host": "localhost:80",
     "basePath": "/",
     "paths": {
         "/receipts/:id/points": {

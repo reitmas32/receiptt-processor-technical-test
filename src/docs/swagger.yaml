@@ -12,17 +12,17 @@ definitions:
         example: fsdfbshfsfbsdfnsd
         type: string
     type: object
-host: localhost:3000
+host: localhost:80
 info:
   contact:
     email: rafa.zamora.rals@gmail.com
     name: Oswaldo Rafael Zamora Ramirez
     url: https://github.com/reitmas32
-  description: This is a API by System UNICyber|SISEC https://github.com/reitmas32/UNICyber-BackEnd
+  description: This is a API by Technical Test by Fetch
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-  title: UNICyber-API
+  title: Receipt Processor
   version: "1.0"
 paths:
   /receipts/:id/points:
