@@ -14,8 +14,7 @@ import (
 // @description This is a API by Technical Test by Fetch
 
 // @contact.name Oswaldo Rafael Zamora Ramirez
-// @contact.url https://github.com/reitmas32
-// @contact.email rafa.zamora.rals@gmail.com
+// @contact.url https://rafaelzamora.onrender.com/
 
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT

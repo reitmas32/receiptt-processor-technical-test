@@ -12,8 +12,7 @@ const docTemplate = `{
         "title": "{{.Title}}",
         "contact": {
             "name": "Oswaldo Rafael Zamora Ramirez",
-            "url": "https://github.com/reitmas32",
-            "email": "rafa.zamora.rals@gmail.com"
+            "url": "https://rafaelzamora.onrender.com/"
         },
         "license": {
             "name": "MIT",

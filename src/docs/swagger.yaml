@@ -15,9 +15,8 @@ definitions:
 host: localhost:80
 info:
   contact:
-    email: rafa.zamora.rals@gmail.com
     name: Oswaldo Rafael Zamora Ramirez
-    url: https://github.com/reitmas32
+    url: https://rafaelzamora.onrender.com/
   description: This is a API by Technical Test by Fetch
   license:
     name: MIT
