@@ -19,7 +19,7 @@ import (
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT
 
-// @host localhost:80
+// @host localhost:3000
 // @BasePath /
 // @query.collection.format multi
 func main() {
