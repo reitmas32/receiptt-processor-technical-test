@@ -19,7 +19,7 @@ import (
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT
 
-// @host https://receipt-procesor-rafa-zamora.onrender.com
+// @host localhost:3000
 // @BasePath /
 // @query.collection.format multi
 func main() {

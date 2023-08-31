@@ -48,7 +48,7 @@ definitions:
         example: f985a244-11e2-4f57-a451-d7147e6a76f8
         type: string
     type: object
-host: https://receipt-procesor-rafa-zamora.onrender.com
+host: localhost:3000
 info:
   contact:
     name: Oswaldo Rafael Zamora Ramirez
