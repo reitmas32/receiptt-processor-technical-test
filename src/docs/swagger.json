@@ -13,7 +13,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:3000",
+    "host": "https://receipt-procesor-rafa-zamora.onrender.com",
     "basePath": "/",
     "paths": {
         "/receipts/process": {
