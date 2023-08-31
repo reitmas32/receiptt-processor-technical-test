@@ -15,6 +15,9 @@ RUN go mod download
 # Copia el resto de los archivos al directorio de trabajo
 COPY src/ ./src/
 
+# Ejecutamos los test
+RUN go test ./... -v
+
 # Compila el código en un binario ejecutable
 RUN CGO_ENABLED=1 GOOS=linux go build -o app ./src
 
