@@ -22,5 +22,8 @@ docker run -d -p 3000:3000 receipt_procesor
 
 THe API is avalible in `localhost:3000`
 
-# Notas 
+# Notes 
 Add `sudo` th the commands of docker if the $USER not exist in `docker` group
+
+# Documentation
+The Documentation of Swagger is avalible on localhost:3000/docs/index.html
