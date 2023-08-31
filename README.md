@@ -15,12 +15,12 @@ docker build -t receipt_procesor .
 ### **Run the container**
 
 ```bash
-docker run -d receipt_procesor
+docker run -d -p 3000:3000 receipt_procesor
 ```
 
 ### Try the API
 
-THe API is avalible in `localhost:5000`
+THe API is avalible in `localhost:3000`
 
 # Notas 
 Add `sudo` th the commands of docker if the $USER not exist in `docker` group
