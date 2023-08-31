@@ -1,5 +1,41 @@
 basePath: /
 definitions:
+  models.Item:
+    properties:
+      price:
+        example: "1.25"
+        type: string
+      shortDescription:
+        example: Pepsi - 12-oz
+        type: string
+    type: object
+  models.Receipt:
+    properties:
+      id:
+        example: f985a244-11e2-4f57-a451-d7147e6a76f8
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/models.Item'
+        type: array
+      purchaseDate:
+        example: "2022-01-01"
+        type: string
+      purchaseTime:
+        example: "13:01"
+        type: string
+      retailer:
+        example: Target
+        type: string
+      total:
+        example: "1.25"
+        type: string
+    required:
+    - purchaseDate
+    - purchaseTime
+    - retailer
+    - total
+    type: object
   models.ResponseGetPoints:
     properties:
       points:
@@ -9,10 +45,10 @@ definitions:
   models.ResponseProcessReceipts:
     properties:
       id:
-        example: fsdfbshfsfbsdfnsd
+        example: f985a244-11e2-4f57-a451-d7147e6a76f8
         type: string
     type: object
-host: localhost:80
+host: localhost:3000
 info:
   contact:
     name: Oswaldo Rafael Zamora Ramirez
@@ -24,25 +60,24 @@ info:
   title: Receipt Processor
   version: "1.0"
 paths:
-  /receipts/:id/points:
+  /receipts/{id}/points:
     get:
       operationId: get-points
       parameters:
-      - description: Schema by Calculate Ponits
-        in: body
-        name: data
+      - description: UUID of Receipt
+        in: path
+        name: id
         required: true
-        schema:
-          $ref: '#/definitions/models.ResponseGetPoints'
+        type: string
       produces:
       - application/json
       responses:
         "200":
-          description: OK
+          description: Total points of the Receipt
           schema:
             $ref: '#/definitions/models.ResponseGetPoints'
-        "400":
-          description: Bad Request
+        "404":
+          description: The Receipt does not exist
           schema:
             $ref: '#/definitions/models.ResponseGetPoints'
       summary: Calculate Points
@@ -57,18 +92,28 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/models.ResponseProcessReceipts'
+          $ref: '#/definitions/models.Receipt'
       produces:
       - application/json
       responses:
         "200":
-          description: OK
+          description: UUID of Receipt
           schema:
             $ref: '#/definitions/models.ResponseProcessReceipts'
         "400":
-          description: Bad Request
+          description: Error to proccess the Receipt
           schema:
-            $ref: '#/definitions/models.ResponseProcessReceipts'
+            additionalProperties:
+              type: string
+            type: object
+        "422":
+          description: JSON body not is Valud missing fields
+          schema:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
       summary: Create new Receipt
       tags:
       - Receipts

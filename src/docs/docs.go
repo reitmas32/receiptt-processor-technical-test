@@ -23,43 +23,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/receipts/:id/points": {
-            "get": {
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Receipts"
-                ],
-                "summary": "Calculate Points",
-                "operationId": "get-points",
-                "parameters": [
-                    {
-                        "description": "Schema by Calculate Ponits",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.ResponseGetPoints"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.ResponseGetPoints"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.ResponseGetPoints"
-                        }
-                    }
-                }
-            }
-        },
         "/receipts/process": {
             "post": {
                 "produces": [
@@ -77,21 +40,71 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.ResponseProcessReceipts"
+                            "$ref": "#/definitions/models.Receipt"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "UUID of Receipt",
                         "schema": {
                             "$ref": "#/definitions/models.ResponseProcessReceipts"
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Error to proccess the Receipt",
                         "schema": {
-                            "$ref": "#/definitions/models.ResponseProcessReceipts"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "JSON body not is Valud missing fields",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/receipts/{id}/points": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Receipts"
+                ],
+                "summary": "Calculate Points",
+                "operationId": "get-points",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID of Receipt",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Total points of the Receipt",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseGetPoints"
+                        }
+                    },
+                    "404": {
+                        "description": "The Receipt does not exist",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseGetPoints"
                         }
                     }
                 }
@@ -99,6 +112,56 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.Item": {
+            "type": "object",
+            "properties": {
+                "price": {
+                    "type": "string",
+                    "example": "1.25"
+                },
+                "shortDescription": {
+                    "type": "string",
+                    "example": "Pepsi - 12-oz"
+                }
+            }
+        },
+        "models.Receipt": {
+            "type": "object",
+            "required": [
+                "purchaseDate",
+                "purchaseTime",
+                "retailer",
+                "total"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "f985a244-11e2-4f57-a451-d7147e6a76f8"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Item"
+                    }
+                },
+                "purchaseDate": {
+                    "type": "string",
+                    "example": "2022-01-01"
+                },
+                "purchaseTime": {
+                    "type": "string",
+                    "example": "13:01"
+                },
+                "retailer": {
+                    "type": "string",
+                    "example": "Target"
+                },
+                "total": {
+                    "type": "string",
+                    "example": "1.25"
+                }
+            }
+        },
         "models.ResponseGetPoints": {
             "type": "object",
             "properties": {
@@ -113,7 +176,7 @@ const docTemplate = `{
             "properties": {
                 "id": {
                     "type": "string",
-                    "example": "fsdfbshfsfbsdfnsd"
+                    "example": "f985a244-11e2-4f57-a451-d7147e6a76f8"
                 }
             }
         }
@@ -123,7 +186,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:80",
+	Host:             "localhost:3000",
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "Receipt Processor",
